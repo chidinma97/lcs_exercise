@@ -33,3 +33,15 @@ export const getMembers = (data: Record<string, any>): Record<string, any>[] => 
 export const getMemberName = (member: Record<string, any>): string => {
   return member?.['member-info']?.namelist || '';
 };
+export const getMemberFirstName = (member: Record<string, any>): string => {
+  return member?.['member-info']?.firstname || '';
+};
+export const getMemberLastName = (member: Record<string, any>): string => {
+  return member?.['member-info']?.lastname || '';
+};
+export const getMemberState = (member: Record<string, any>): string => {
+  return member?.['member-info']?.['state']?.['state-fullname'] || '';
+};
+export const getMemberParty = (member: Record<string, any>): string => {
+  return member?.['member-info']?.party || '';
+};
