@@ -7,8 +7,8 @@ import '@/styles/page.css';
 import { LanguageVariant } from 'typescript';
 
 export default async function App() {
-  const data = await fetchMemberData();
-  // const [data, setData] = useState([]);
+  const memberData = await fetchMemberData();
+  // const [data, setData] = useState(memberData);
 
   return (
     <main className="main-container">
@@ -17,7 +17,7 @@ export default async function App() {
       </header>
       <label>Search</label>
       <input type='text' />
-      <MemberList members={data} />
+      <MemberList members={memberData} />
     </main>
   );
 }
