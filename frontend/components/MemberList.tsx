@@ -45,7 +45,7 @@ export default function MemberList({ ...props }: IProps) {
 
   return (
     <div>
-      <Search callback={(memberSearchValue: SetStateAction<string>) => setMemberSearchState(memberSearchValue)} />
+      <Search callback={(memberSearchValue: SetStateAction<string>) => setMemberSearchState(memberSearchValue)}>Search by Name</Search>
       <table>
         <thead>
           <tr>

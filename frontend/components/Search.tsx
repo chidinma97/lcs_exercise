@@ -15,6 +15,7 @@ const Search = ({callback}) =>{
             <input type='text' className='memberSearchBarInput' 
             value={searchValue} 
             onChange={(e) => setSearchValue(e.target.value)}/>
+            filter name
         </form>
     )
 } 
