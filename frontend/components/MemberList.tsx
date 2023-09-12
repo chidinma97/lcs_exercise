@@ -34,7 +34,7 @@ export default function MemberList({ ...props }: IProps) {
           member?.["member-info"]?.["official-name"]?.toLowerCase().includes(memberSearchValue.toLocaleLowerCase())
         );
         resolve(filteredMembers);
-      }, 2000)
+      }, 0)
     })
   }
 
