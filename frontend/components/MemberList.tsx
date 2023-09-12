@@ -10,13 +10,7 @@ interface IProps {
 
 export default function MemberList({ ...props }: IProps) {
 
-  const columns = [
-    { label: "First Name", accessor: "firstname", sortable: true },
-    { label: "Last Name", accessor: "lastname", sortable: false },
-    { label: "State", accessor: "state", sortable: true },
-    { label: "Party", accessor: "party", sortable: true },
-    { label: "StateDistrict", accessor: "statedistrict", sortable: true },
-  ];
+
 
 
   const memberData = getMembers(props.members);
@@ -44,14 +38,16 @@ export default function MemberList({ ...props }: IProps) {
       setMembers(members);
     });
   }, [memberSearchValue])
+
+  const columns = [
+    { label: "First Name", accessor: "firstname", sortable: true },
+    { label: "Last Name", accessor: "lastname", sortable: true },
+    { label: "State", accessor: "state", sortable: true },
+    { label: "Party", accessor: "party", sortable: false },
+    { label: "StateDistrict", accessor: "statedistrict", sortable: true },
+  ];
+
   return (
-    // <ol className="member-list">
-    //   {getMembers(props.members).map((member: any) =>
-    //     <li key={member.statedistrict}>
-    //       {getMemberFirstName(member)}
-    //     </li>
-    //   )}
-    // </ol>
     <div>
       <Search callback={(memberSearchValue: SetStateAction<string>) => setMemberSearchState(memberSearchValue)} />
       <table>
