@@ -1,8 +1,9 @@
 'use client';
 import { getMembers, getMemberName, getMemberFirstName, getMemberLastName, getMemberState, getMemberParty, getMemberStateDistrict } from '@/utils/helpers';
-import { SetStateAction, useEffect, useMemo, useState } from 'react';
+import { SetStateAction, useEffect, useState } from 'react';
 import '@/styles/MemberList.css';
 import Search from './Search';
+import ColumnHead from './ColumnHead';
 
 interface IProps {
   members: Record<string, any>;
@@ -35,30 +36,11 @@ export default function MemberList({ ...props }: IProps) {
     });
   }, [memberSearchValue])
 
-  const columns = [
-    { label: "First Name", accessor: "firstname", sortable: true },
-    { label: "Last Name", accessor: "lastname", sortable: true },
-    { label: "State", accessor: "state", sortable: true },
-    { label: "Party", accessor: "party", sortable: false },
-    { label: "StateDistrict", accessor: "statedistrict", sortable: true },
-  ];
-
   return (
     <div>
       <Search callback={(memberSearchValue: SetStateAction<string>) => setMemberSearchState(memberSearchValue)} />
       <table>
-        <thead>
-          <tr>
-            {columns.map(({ label, accessor, sortable }) => {
-              return (
-                <th
-                  key={accessor}>
-                  {label}
-                </th>
-              );
-            })}
-          </tr>
-        </thead>
+        <ColumnHead />
         <tbody>
           {members.map((member: any) =>
             <tr>
