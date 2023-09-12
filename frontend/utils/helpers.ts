@@ -45,3 +45,6 @@ export const getMemberState = (member: Record<string, any>): string => {
 export const getMemberParty = (member: Record<string, any>): string => {
   return member?.['member-info']?.party || '';
 };
+export const getMemberStateDistrict = (member: Record<string, any>): string => {
+  return member?.statedistrict || '';
+};

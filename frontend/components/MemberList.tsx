@@ -1,33 +1,49 @@
-import { getMembers, getMemberName, getMemberFirstName, getMemberLastName, getMemberState, getMemberParty } from '@/utils/helpers';
-// import TableHead from "./TableHead";
-import { useEffect, useState } from 'react';
+'use client';
+import { getMembers, getMemberName, getMemberFirstName, getMemberLastName, getMemberState, getMemberParty, getMemberStateDistrict } from '@/utils/helpers';
+import { SetStateAction, useEffect, useMemo, useState } from 'react';
 import '@/styles/MemberList.css';
+import Search from './Search';
 
 interface IProps {
   members: Record<string, any>;
 }
 
 export default function MemberList({ ...props }: IProps) {
-  // const [prop, setTableData] = useState(prop);
 
   const columns = [
-    { label: "First Name", accessor: "first_name", sortable: true },
-    { label: "Last Name", accessor: "last_name", sortable: false },
+    { label: "First Name", accessor: "firstname", sortable: true },
+    { label: "Last Name", accessor: "lastname", sortable: false },
     { label: "State", accessor: "state", sortable: true },
     { label: "Party", accessor: "party", sortable: true },
+    { label: "StateDistrict", accessor: "statedistrict", sortable: true },
   ];
 
-  const members= getMembers(props.members);
-  // const data3 = [...members].sort((a, b) => a.name.localeCompare(b.name));
 
-  // const handleSortingChange = (accessor) => {
-  //   const sortOrder =
-  //    accessor === sortField && order === "asc" ? "desc" : "asc";
-  //   setSortField(accessor);
-  //   setOrder(sortOrder);
-  //   handleSorting(accessor, sortOrder);
-  //  };
+  const memberData = getMembers(props.members);
+  const [members, setMembers] = useState([]);
+  const [memberSearchValue, setMemberSearchState] = useState("");
 
+  let filterMembers = function (memberSearchValue: string) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        if (memberSearchValue === '') {
+          resolve(memberData);
+          return;
+        }
+        let filteredMembers = memberData?.filter(member =>
+          member?.["member-info"]?.["official-name"]?.toLowerCase().includes(memberSearchValue.toLocaleLowerCase())
+        );
+        resolve(filteredMembers);
+      }, 2000)
+    })
+  }
+
+  useEffect(() => {
+    setMembers([]);
+    filterMembers(memberSearchValue).then((members) => {
+      setMembers(members);
+    });
+  }, [memberSearchValue])
   return (
     // <ol className="member-list">
     //   {getMembers(props.members).map((member: any) =>
@@ -36,41 +52,43 @@ export default function MemberList({ ...props }: IProps) {
     //     </li>
     //   )}
     // </ol>
-
-    <table>
-
-      <thead>
-        <tr>
-          {columns.map(({ label, accessor, sortable }) => {
-            return (
-              <th
-                key={accessor}>
-                {/* // onClick={sortable ? () => handleSortingChange(accessor) : null} > */}
-                {label}
-              </th>
-            );
-          })}
-        </tr>
-      </thead>
-
-      {getMembers(props.members).map((member: any) =>
-        <tr>
-          <td key={member.firstname}>
-            {getMemberFirstName(member)}
-          </td>
-          <td key={member.lastname}>
-            {getMemberLastName(member)}
-          </td>
-          <td key={member.getMemberState}>
-            {getMemberState(member)}
-          </td>
-          <td key={member.getMemberState}>
-            {getMemberParty(member)}
-          </td>
-        </tr>
-
-
-      )}
-    </table>
+    <div>
+      <Search callback={(memberSearchValue: SetStateAction<string>) => setMemberSearchState(memberSearchValue)} />
+      <table>
+        <thead>
+          <tr>
+            {columns.map(({ label, accessor, sortable }) => {
+              return (
+                <th
+                  key={accessor}>
+                  {label}
+                </th>
+              );
+            })}
+          </tr>
+        </thead>
+        <tbody>
+          {members.map((member: any) =>
+            <tr>
+              <td key={member.firstname}>
+                {getMemberFirstName(member)}
+              </td>
+              <td key={member.lastname}>
+                {getMemberLastName(member)}
+              </td>
+              <td key={member.memberState}>
+                {getMemberState(member)}
+              </td>
+              <td key={member.memberParty}>
+                {getMemberParty(member)}
+              </td>
+              <td key={member.memberStateDistrict}>
+                {getMemberStateDistrict(member)}
+              </td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+    </div>
   )
 }
