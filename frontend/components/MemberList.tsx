@@ -9,10 +9,6 @@ interface IProps {
 }
 
 export default function MemberList({ ...props }: IProps) {
-
-
-
-
   const memberData = getMembers(props.members);
   const [members, setMembers] = useState([]);
   const [memberSearchValue, setMemberSearchState] = useState("");
