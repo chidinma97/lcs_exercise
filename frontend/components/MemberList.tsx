@@ -13,7 +13,8 @@ export default function MemberList({ ...props }: IProps) {
   const memberData = getMembers(props.members); //getting the array of members
   const [members, setMembers] = useState(memberData); // used to control current state of member. Initalized to empty array. can be set to memberData if we want to see original list of members
   const [memberSearchValue, setMemberSearchState] = useState(""); //save the search value when pressed enter
-  const [memberPartyValue, setPartyFilterState] = useState("");
+  const [memberPartyValue, setPartyFilter] = useState("");
+  const [memberStateValue, setStateFilter] = useState("");
 
   let filterMembers = function (memberSearchValue: string) {
     return new Promise((resolve) => {
@@ -21,10 +22,10 @@ export default function MemberList({ ...props }: IProps) {
           resolve(memberData);
           return;
         }
-        let filteredMembers = members?.filter(member =>
+        let filteredMembersName = members?.filter(member =>
           member?.["member-info"]?.["official-name"]?.toLowerCase().includes(memberSearchValue.toLowerCase())
         ); //filter through official-name value because it contains both first and last
-        resolve(filteredMembers);
+        resolve(filteredMembersName);
     })
   }
 
@@ -38,6 +39,19 @@ export default function MemberList({ ...props }: IProps) {
           member?.['member-info']?.["party"]?.toLowerCase().includes(memberPartyValue)
         );
         resolve(filteredMembersParty);
+    })
+  }
+  
+  let filterState = function (memberStateValue: string) {
+    return new Promise((resolve) => {
+        if (memberStateValue === '') {
+          resolve(memberData);
+          return;
+        }
+        let filteredMembersState = members.filter(member =>
+          member?.['member-info']?.['state']?.['state-fullname']?.toLowerCase().includes(memberStateValue)
+        );
+        resolve(filteredMembersState);
     })
   }
 
@@ -55,11 +69,19 @@ export default function MemberList({ ...props }: IProps) {
     });
   }, [memberPartyValue])
 
+  useEffect(() => {
+    setMembers([]);
+    filterState(memberStateValue).then((members) => {
+      setMembers(members);
+    });
+  }, [memberStateValue])
+
   return (
     <div>
       <>
       Search Name: <Search callback={(memberSearchValue: SetStateAction<string>) => setMemberSearchState(memberSearchValue)} />
-      Search Party: <Search callback={(memberPartyValue: SetStateAction<string>) => setPartyFilterState(memberPartyValue)}/>
+      Search Party: <Search callback={(memberPartyValue: SetStateAction<string>) => setPartyFilter(memberPartyValue)}/>
+      Search State: <Search callback={(memberStateValue: SetStateAction<string>) => setStateFilter(memberStateValue)} />
       </>
       <table>
         <thead><ColumnHead /></thead>

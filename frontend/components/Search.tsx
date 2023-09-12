@@ -9,6 +9,7 @@ const Search = ({callback}) =>{
     const handleSubmit = e => {
         e.preventDefault();
         callback(searchValue);
+        setSearchValue("");
 
     }
     return(
