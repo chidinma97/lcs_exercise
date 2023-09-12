@@ -11,8 +11,6 @@ const ColumnHead = () => {
     ];
 
     return(
-        <div>
-            <thead>
           <tr>
             {columns.map(({ label, accessor, sortable }) => {
               return (
@@ -23,8 +21,6 @@ const ColumnHead = () => {
               );
             })}
           </tr>
-        </thead>
-        </div>
     )
 }
 

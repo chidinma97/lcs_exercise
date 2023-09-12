@@ -16,7 +16,6 @@ export default function MemberList({ ...props }: IProps) {
 
   let filterMembers = function (memberSearchValue: string) {
     return new Promise((resolve) => {
-      setTimeout(() => {
         if (memberSearchValue === '') {
           resolve(memberData);
           return;
@@ -25,7 +24,6 @@ export default function MemberList({ ...props }: IProps) {
           member?.["member-info"]?.["official-name"]?.toLowerCase().includes(memberSearchValue.toLocaleLowerCase())
         );
         resolve(filteredMembers);
-      }, 0)
     })
   }
 
@@ -40,7 +38,8 @@ export default function MemberList({ ...props }: IProps) {
     <div>
       <Search callback={(memberSearchValue: SetStateAction<string>) => setMemberSearchState(memberSearchValue)} />
       <table>
-        <ColumnHead />
+        <thead><ColumnHead /></thead>
+        
         <tbody>
           {members.map((member: any) =>
             <tr>
