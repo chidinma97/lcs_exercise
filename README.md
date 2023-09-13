@@ -106,7 +106,22 @@ In total, plan on at least four hours to work on this exercise and up to eight.
 Adding more code or more features will not necessarily produce a better result. 
 The evaluators are trying to get a sense of your level of knowledge and experience with these tools, your overall engineering approach and your ability to communicate what you have done.
 
-# How to 
+# Goals
+These were my goals when I started.
+Sorting
+* Last Name
+* First Name
+* State
+Searching
+* Search for name
+* Search for state
+Filtering
+* Party
+* State
+
+Searching/Filter ended up being combined and I added sorting on more columns
+
+# How to Use the Application
 
 Run application as listed in {## Running the application}
 Listing
@@ -125,5 +140,16 @@ Submitting an empty string (no whitespace) in a filter that has already been use
 
 Sorting
 Clicking on any of the columns will sort the data. Might need multiple clicks to sort as wanted since each sort refers to the same sort order status (ascending/descending).
+
+# Other Notes
+I usually work of standalone backend components, so if it looks messy and inconsistent, please forgive me. I tried to organize everything in a clean and readable manner (i.e. using helper classes). I did not change much from the starter code as I did not want to spend too much time breaking, reverting, or fixing build issues.
+
+I do see that there was also an array of committees, but did not know how exactly to tie that into the members array. If I had more time, I could have a different page that would show a table of committees that would have the same functionalities as the one I implemented for members.
+
+I did not focus much on design and kept the page very basic. With more time, I would at least format the table a bit better. Make it look more modern.
+
+the MemberData.json file was used just to help me visualize the data.
+
+Thank you for this opportunity!
 
 

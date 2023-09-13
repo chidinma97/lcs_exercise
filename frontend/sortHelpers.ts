@@ -4,7 +4,7 @@ import { getMemberFirstName, getMemberLastName, getMemberParty, getMemberState, 
 export const updateOrder = (order: string) => {
     return order =  (order === 'ASC') ? "DSC" : "ASC";
 }
-/**basic sorting functions but on different fields */
+/**basic sorting functions but on different fields  matching the data in each column*/
 export const sortFirstName = (order: string, members: []) => {
     console.log('order is:', order);
     if (order === 'ASC') {
