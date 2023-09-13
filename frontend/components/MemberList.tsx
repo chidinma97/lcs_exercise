@@ -44,8 +44,8 @@ export default function MemberList({ ...props }: IProps) {
     setOrder(updateOrder(order));
   }
 
-  /**
- * Since I am actually manipulating the state of the table, I am using Promises
+/**
+ * I am using Promises that when table is updated it is async with other filters.
  */
   let filterName = function (memberSearchValue: string) {
     return new Promise((resolve) => {
