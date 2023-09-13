@@ -1,8 +1,10 @@
-import { getMemberFirstName, getMemberLastName, getMemberState, getMemberStateDistrict } from "./utils/helpers";
+import { getMemberFirstName, getMemberLastName, getMemberParty, getMemberState, getMemberStateDistrict } from "./utils/helpers";
 
+/**reused function to change the order of the sort to its opposite */
 export const updateOrder = (order: string) => {
     return order =  (order === 'ASC') ? "DSC" : "ASC";
 }
+/**basic sorting functions but on different fields */
 export const sortFirstName = (order: string, members: []) => {
     console.log('order is:', order);
     if (order === 'ASC') {
@@ -16,7 +18,6 @@ export const sortFirstName = (order: string, members: []) => {
         return sortedMember
     }
 }
-
 export const sortLastName = (order: string, members: []) => {
     console.log('order is:', order);
     if (order === 'ASC') {
@@ -43,7 +44,19 @@ export const sortState= (order: string, members: []) => {
         return sortedMember
     }
 }
-
+export const sortParty= (order: string, members: []) => {
+    console.log('order is:', order);
+    if (order === 'ASC') {
+        let sortedMember = [...members].sort((a, b) =>
+            getMemberParty(a).toLowerCase() > getMemberParty(b).toLowerCase() ? 1 : -1);
+        return sortedMember
+    }
+    if (order === 'DSC') {
+        let sortedMember= [...members].sort((a, b) =>
+        getMemberParty(a).toLowerCase() < getMemberParty(b).toLowerCase() ? 1 : -1);
+        return sortedMember
+    }
+}
 export const sortStateDistrict= (order: string, members: []) => {
     console.log('order is:', order);
     if (order === 'ASC') {

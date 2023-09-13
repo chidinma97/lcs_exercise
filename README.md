@@ -106,4 +106,24 @@ In total, plan on at least four hours to work on this exercise and up to eight.
 Adding more code or more features will not necessarily produce a better result. 
 The evaluators are trying to get a sense of your level of knowledge and experience with these tools, your overall engineering approach and your ability to communicate what you have done.
 
+# How to 
+
+Run application as listed in {## Running the application}
+Listing
+When application begins, a table with every member's first name, last name, state, party, and state district will be presented.
+
+Filtering
+There are 3 filtering option. They are all case insensitive:
+    Search Name: will filter based on of name (either first or last) contains the string submitted. Press enter to  search. A subset of the current list of members will be shown
+
+    Search Party: will filter based on the members party. (only works with inputs r or d). A subset from the current list of members will be shown.
+
+    Search State: will filter based on states that contains the string submitted. A subset from the current list of members will be shown.
+
+    I did not add a filter based on state district since each value was unique
+Submitting an empty string (no whitespace) in a filter that has already been used will reset table to original state.
+
+Sorting
+Clicking on any of the columns will sort the data. Might need multiple clicks to sort as wanted since each sort refers to the same sort order status (ascending/descending).
+
 
