@@ -108,14 +108,14 @@ The evaluators are trying to get a sense of your level of knowledge and experien
 
 # Goals
 These were my goals when I started.
-Sorting
+- Sorting
     * Last Name
     * First Name
     * State
-Searching
+- Searching
     * Search for name
     * Search for state
-Filtering
+- Filtering
     * Party
     * State
 
