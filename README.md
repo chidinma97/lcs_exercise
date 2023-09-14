@@ -109,15 +109,15 @@ The evaluators are trying to get a sense of your level of knowledge and experien
 # Goals
 These were my goals when I started.
 Sorting
-* Last Name
-* First Name
-* State
+- Last Name
+- First Name
+- State
 Searching
-* Search for name
-* Search for state
+- Search for name
+- Search for state
 Filtering
-* Party
-* State
+- Party
+-  State
 
 Searching/Filter ended up being combined and I added sorting on more columns
 
